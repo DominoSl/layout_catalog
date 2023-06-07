@@ -1,3 +1,7 @@
+$c-blue: #00acdc;
+$c-accent: #060b35;
+$c-secondary: #616070;
+
 body {
   margin: 0;
   padding: 0;
@@ -9,6 +13,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .nav {
@@ -33,9 +38,153 @@ header {
   }
 }
 
+.is-active {
+  color: $c-blue;
+}
+
+.is-active::after {
+  content: "";
+  display: block;
+  position: absolute;
+  margin-top: 20px;
+  width: fit-content;
+  height: 4px;
+  border-radius: 2px;
+  background-color: $c-blue;
+}
+
 .logo {
   &__image {
     width: 40px;
     height: 40px;
+  }
+}
+
+.catalog {
+  padding: 50px 40px;
+}
+
+.cards-container {
+  max-width: 946px;
+  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+
+  width: 200px;
+  padding: 28px 16px 16px;
+  border: 1px solid #f3f3f3;
+  border-radius: 5px;
+
+  &__image {
+    align-self: center;
+    display: block;
+    width: 160px;
+    margin-bottom: 40px;
+  }
+
+  &__title {
+    margin: 0 0 4px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    color: $c-accent;
+  }
+
+  &__code {
+    margin-bottom: 16px;
+    font-size: 10px;
+    line-height: 14px;
+    color: $c-secondary;
+  }
+
+  &__rating {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__review {
+    font-size: 10px;
+    line-height: 14px;
+  }
+
+  &__price {
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__price-title {
+    font-size: 12px;
+    line-height: 18px;
+    color: $c-secondary;
+  }
+
+  &__price-value {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;
+    color: $c-accent;
+  }
+
+  &__button {
+    display: block;
+    height: 40px;
+    background: $c-blue;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 40px;
+
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  &:not(:nth-child(4n)) {
+    margin-right: 48px;
+  }
+
+  &:nth-child(-n + 4) {
+    margin-bottom: 52px;
+  }
+}
+
+.stars {
+  display: flex;
+
+  &__star {
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-image: url(../images/star.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &__star:not(:last-child) {
+    margin-right: 4px;
+  }
+
+  @for $i from 1 through 5 {
+    @for $j from 1 through $i {
+
+      &--count-#{$i} :nth-child(#{$j}) {
+        background-image: url(../images/star-active.svg);
+      }
+    }
   }
 }
